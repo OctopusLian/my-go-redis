@@ -17,3 +17,5 @@
 .vscode/
 .idea/
 .history/
+
+.logs/
