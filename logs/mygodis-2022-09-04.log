@@ -1,0 +1,6 @@
+[INFO][server.go:41] 2022/09/04 19:46:34 start listen
+[INFO][server.go:64] 2022/09/04 19:47:08 accepted link
+[INFO][echo.go:67] 2022/09/04 19:47:08 connection close
+[INFO][server.go:48] 2022/09/04 19:47:15 shutting down
+[INFO][echo.go:84] 2022/09/04 19:47:15 handler shutting down...
+[ERROR][main.go:52] 2022/09/04 19:47:15 accept tcp [::]:6389: use of closed network connection
