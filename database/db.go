@@ -3,11 +3,12 @@
  * @Author: neozhang
  * @Date: 2022-09-04 18:17:03
  * @LastEditors: neozhang
- * @LastEditTime: 2022-09-04 18:58:27
+ * @LastEditTime: 2022-09-05 22:03:43
  */
 package database
 
 import (
+	"mygoredis/aof"
 	"mygoredis/datastruct/dict"
 	"mygoredis/interface/database"
 	"mygoredis/interface/resp"
@@ -16,8 +17,9 @@ import (
 )
 
 type DB struct {
-	index int
-	data  dict.Dict
+	index      int
+	data       dict.Dict
+	aofHandler aof.AofHandler
 }
 
 // ExecFunc is interface for command executor

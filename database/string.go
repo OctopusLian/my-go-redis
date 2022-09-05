@@ -3,7 +3,7 @@
  * @Author: neozhang
  * @Date: 2022-09-04 19:09:20
  * @LastEditors: neozhang
- * @LastEditTime: 2022-09-04 19:15:42
+ * @LastEditTime: 2022-09-06 00:45:56
  */
 package database
 
@@ -48,6 +48,7 @@ func execSet(db *DB, args [][]byte) resp.Reply {
 		Data: value,
 	}
 	db.PutEntity(key, entity)
+	//db.aofHandler.AddAof()
 	return &reply.OkReply{}
 }
 

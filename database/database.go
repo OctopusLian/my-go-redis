@@ -3,12 +3,13 @@
  * @Author: neozhang
  * @Date: 2022-09-04 19:19:43
  * @LastEditors: neozhang
- * @LastEditTime: 2022-09-04 19:31:43
+ * @LastEditTime: 2022-09-05 22:02:06
  */
 package database
 
 import (
 	"fmt"
+	"mygoredis/aof"
 	"mygoredis/config"
 	"mygoredis/interface/resp"
 	"mygoredis/lib/logger"
@@ -19,7 +20,8 @@ import (
 )
 
 type Database struct {
-	dbSet []*DB
+	dbSet      []*DB
+	aofHandler *aof.AofHandler
 }
 
 // NewDatabase creates a redis database,
@@ -33,6 +35,14 @@ func NewDatabase() *Database {
 		singleDB := makeDB()
 		singleDB.index = i
 		mdb.dbSet[i] = singleDB
+	}
+	// 初始化aof
+	if config.Properties.AppendOnly {
+		aofHandler, err := aof.NewAOFHandler(mdb)
+		if err != nil {
+			panic(err)
+		}
+		mdb.aofHandler = aofHandler
 	}
 	return mdb
 }
